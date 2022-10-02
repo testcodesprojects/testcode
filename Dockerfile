@@ -34,11 +34,16 @@ RUN cd LBFGSpp && \
     make install
 
 ENV LD_LIBRARY_PATH /software/boost/stage/lib:/usr/local/lib:$LD_LIBRARY_PATH
-
+# download mkl
+WORKDIR /software
+RUN wget 'https://drive.google.com/uc?export=download&confirm=no_antivirus&id=10RMah6sVf1Arx4UH83bVrOXjlyVQfVIJ' -O MKL && \
+    tar xvf MKL 
 # Build own Inlaplus
 WORKDIR /software
 RUN rm -rf blaze* eigen* LBFGSpp*
 RUN git clone -b master https://github.com/testcodesprojects/testcode.git && \
     cd testcode && \
     make VERBOSE=1
+    cd .. && \
+    rm -r testcode
 ENV PATH /software/testcode:$PATH
