@@ -43,7 +43,7 @@ WORKDIR /software
 RUN rm -rf blaze* eigen* LBFGSpp*
 RUN git clone -b master https://github.com/testcodesprojects/testcode.git && \
     cd testcode && \
-    make VERBOSE=1
+    make VERBOSE=1 && \
     cd .. && \
     rm -r testcode
 ENV PATH /software/testcode:$PATH
