@@ -38,7 +38,7 @@ ENV LD_LIBRARY_PATH /software/boost/stage/lib:/usr/local/lib:$LD_LIBRARY_PATH
 # Build own Inlaplus
 WORKDIR /software
 RUN rm -rf blaze* eigen* LBFGSpp*
-RUN git clone -b master https://github.com/testcodesprojects/testcodes.git && \
+RUN git clone -b master https://github.com/testcodesprojects/testcode.git && \
     cd testcode && \
     make VERBOSE=1
 ENV PATH /software/testcode:$PATH
