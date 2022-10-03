@@ -4,7 +4,6 @@ SRC=main_mpi.cpp GLP/GLP-Libraries/GLP_libraries.cpp GLP/GLP-Functions/GLP_funct
 OBJ=*.o
 CXXFLAGS=-std=c++14 -O3 -DNDEBUG -mavx -pthread -fopenmp
 ASK = -lgomp -lgfortran -fopenmp -fPIC -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core
-MKLPATH = -L/software/MKL -L/usr/local/MKL 
 MKLINK= -Wl,--start-group libmkl_intel_lp64.a libmkl_gnu_thread.a libmkl_core.a -Wl,--end-group
 LDFLAGS=-L/software/boost/stage/lib
 LIBS=-lgomp -lpthread -lm -ldl -lmpi -lstdc++ -lboost_serialization -lboost_mpi -llapack
