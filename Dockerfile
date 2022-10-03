@@ -39,9 +39,6 @@ RUN cd && \
     cd /usr/local/ && \
     wget 'https://drive.google.com/uc?export=download&confirm=no_antivirus&id=10RMah6sVf1Arx4UH83bVrOXjlyVQfVIJ' -O MKL && \
     tar xvf MKL 
-WORKDIR /software
-RUN wget 'https://drive.google.com/uc?export=download&confirm=no_antivirus&id=10RMah6sVf1Arx4UH83bVrOXjlyVQfVIJ' -O MKL && \
-    tar xvf MKL 
 # Build own Inlaplus
 WORKDIR /software
 RUN rm -rf blaze* eigen* LBFGSpp*
