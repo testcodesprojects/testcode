@@ -35,10 +35,12 @@ RUN cd LBFGSpp && \
 
 ENV LD_LIBRARY_PATH /software/boost/stage/lib:/usr/local/lib:$LD_LIBRARY_PATH
 # download mkl
-RUN cd && \
-    cd /usr/local/ && \
-    wget 'https://drive.google.com/uc?export=download&confirm=no_antivirus&id=10RMah6sVf1Arx4UH83bVrOXjlyVQfVIJ' -O MKL && \
-    tar xvf MKL 
+RUN apt-get install -y software-properties-common
+WORKDIR /software
+#RUN wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | tee /usr/share/keyrings/oneapi-archi    ve-keyring.gpg > /dev/null && echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | tee /etc/apt/sources.list.d/oneAPI.list
+WORKDIR /software
+RUN wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null && echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+RUN apt install intel-basekit
 # Build own Inlaplus
 WORKDIR /software
 RUN rm -rf blaze* eigen* LBFGSpp*
